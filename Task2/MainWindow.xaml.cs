@@ -132,55 +132,53 @@ namespace Task2
         {
             try
             {
-                Window1 window1 = new Window1();
-                window1.ShowDialog();
 
-                if (AllTextFile.io)
-                {
-                    SaveFileDialog fdlg = new SaveFileDialog();
-                    fdlg.Title = "C# Corner Open File Dialog";
-                    fdlg.InitialDirectory = @"c:\";
-                    fdlg.Filter = "Files XML (*.xml)|*.xml*";
-                    fdlg.FilterIndex = 2;
-                    fdlg.RestoreDirectory = true;
-                    fdlg.ShowDialog();
+                SaveFileDialog fdlg = new SaveFileDialog();
+                fdlg.Title = "C# Corner Open File Dialog";
+                fdlg.InitialDirectory = @"c:\";
+                fdlg.Filter = "Files XML (*.xml)|*.xml*";
+                fdlg.FilterIndex = 2;
+                fdlg.RestoreDirectory = true;
+                fdlg.ShowDialog();
 
 
 
-                    AllTextFile.lineS = new List<string>(File.ReadAllLines("../../../24_21_1003001_2017-05-29_kpt11.xml")); // копируем весь файл в список
-                    string long_str = "";
-                    for (int f = 0; f < AllTextFile.list_io.Count; f++) {
-                        for (int i = 0; i < AllTextFile.lineS.Count; i++)
-                            AllTextFile.lineS[i] = AllTextFile.lineS[i].Trim();
+                AllTextFile.lineS = new List<string>(File.ReadAllLines("../../../24_21_1003001_2017-05-29_kpt11.xml")); // копируем весь файл в список
+                string long_str = "";
+                for (int f = 0; f < AllTextFile.list_io.Count; f++) {
+                    for (int i = 0; i < AllTextFile.lineS.Count; i++)
+                        AllTextFile.lineS[i] = AllTextFile.lineS[i].Trim();
 
-                        string nums = AllTextFile.go_back[AllTextFile.list_io[f]];
-                        int index_top = 0, index_bottom = 0, index = 0, i0 = Convert.ToInt32(nums[0]) - 48, i1 = Convert.ToInt32(nums[1]) - 48, i2 = Convert.ToInt32(nums[2]) - 48;
-                        string str = AllTextFile.code[i1] + AllTextFile.list_io[f] + AllTextFile.code[i2];
-                        index = AllTextFile.lineS.FindIndex(line => line.StartsWith(str));
-                        string top_line = AllTextFile.type_object[AllTextFile.item0[i0].Name];
-                        string bottom_line = AllTextFile.s_end[i0];
-                        for (index_top = index; !(AllTextFile.lineS[index_top].Contains(top_line)); index_top--) { };
-                        for (index_bottom = index; !(AllTextFile.lineS[index_bottom].Contains(bottom_line)); index_bottom++) { };
-                        AllTextFile.temp_list = AllTextFile.lineS.GetRange(index_top, (index_bottom + 1) - index_top);
+                    string nums = AllTextFile.go_back[AllTextFile.list_io[f]];
+                    int index_top = 0, index_bottom = 0, index = 0, i0 = Convert.ToInt32(nums[0]) - 48, i1 = Convert.ToInt32(nums[1]) - 48, i2 = Convert.ToInt32(nums[2]) - 48;
+                    string str = AllTextFile.code[i1] + AllTextFile.list_io[f] + AllTextFile.code[i2];
+                    index = AllTextFile.lineS.FindIndex(line => line.StartsWith(str));
+                    string top_line = AllTextFile.type_object[AllTextFile.item0[i0].Name];
+                    string bottom_line = AllTextFile.s_end[i0];
+                    for (index_top = index; !(AllTextFile.lineS[index_top].Contains(top_line)); index_top--) { };
+                    for (index_bottom = index; !(AllTextFile.lineS[index_bottom].Contains(bottom_line)); index_bottom++) { };
+                    AllTextFile.temp_list = AllTextFile.lineS.GetRange(index_top, (index_bottom + 1) - index_top);
 
-                        foreach (string s in AllTextFile.temp_list)
-                        {
-                            long_str += s;
-                            long_str += "\n";
-                        }
+                    foreach (string s in AllTextFile.temp_list)
+                    {
+                        long_str += s;
+                        long_str += "\n";
                     }
-
-
-                    XmlDocument doc = new XmlDocument();
-                    long_str = "<base_data>" + long_str + "</base_data>";
-                    doc.LoadXml(long_str);
-                    string path = Convert.ToString(new Uri(fdlg.FileName));
-                    path = path.Substring(8, path.Length - 8);
-                    doc.PreserveWhitespace = false;
-                    doc.Save(path);
-                    AllTextFile.lineS = new List<string>();
-
                 }
+
+
+                XmlDocument doc = new XmlDocument();
+                long_str = "<base_data>" + long_str + "</base_data>";
+                doc.LoadXml(long_str);
+                string path = Convert.ToString(new Uri(fdlg.FileName));
+                path = path.Substring(8, path.Length - 8);
+                if(path.Substring(path.Length - 4, 4) != ".xml")
+                    path = path + ".xml";
+                doc.PreserveWhitespace = false;
+                doc.Save(path);
+                AllTextFile.lineS = new List<string>();
+
+
             }
             catch (Exception ex)
             {

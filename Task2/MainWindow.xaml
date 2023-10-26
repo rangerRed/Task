@@ -8,13 +8,6 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Task" Height="600" Width="1200">
     <Grid>
-        <!--<TreeView x:Name="trv" ItemsSource="{Binding Children}" SelectedItemChanged="Trv_SelectedItemChanged"  HorizontalAlignment="Left" Margin="10,10,0,70"  Width="280">
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate DataType="x:Type model:BaseItem" ItemsSource="{Binding Children}">
-                    <TextBlock TextAlignment="Left" Width="250" Text="{Binding Name}"/>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>-->
         <TreeView VirtualizingStackPanel.IsVirtualizing="True" x:Name="trv" ItemsSource="{Binding Children}" SelectedItemChanged="Trv_SelectedItemChanged"  HorizontalAlignment="Left" Margin="10,10,0,70"  Width="280">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="x:Type model:BaseItem" ItemsSource="{Binding Children}">

@@ -1,0 +1,14 @@
+C:\Users\user\Desktop\Task2\Task2\bin\Release\Task2.exe.config
+C:\Users\user\Desktop\Task2\Task2\bin\Release\Task2.exe
+C:\Users\user\Desktop\Task2\Task2\bin\Release\Task2.pdb
+C:\Users\user\Desktop\Task2\Task2\obj\Release\MainWindow.g.cs
+C:\Users\user\Desktop\Task2\Task2\obj\Release\App.g.cs
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2_MarkupCompile.cache
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2_MarkupCompile.lref
+C:\Users\user\Desktop\Task2\Task2\obj\Release\MainWindow.baml
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.g.resources
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.Properties.Resources.resources
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.csproj.GenerateResource.cache
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.exe
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.pdb
