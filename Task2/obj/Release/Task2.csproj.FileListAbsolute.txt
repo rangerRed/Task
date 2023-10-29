@@ -12,3 +12,4 @@ C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.csproj.GenerateResource.cach
 C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.csproj.CoreCompileInputs.cache
 C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.exe
 C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.pdb
+C:\Users\user\Desktop\Task2\Task2\obj\Release\Task2.csprojAssemblyReference.cache

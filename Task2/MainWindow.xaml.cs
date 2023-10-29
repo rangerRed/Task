@@ -8,6 +8,7 @@ using System.Xml;
 using Microsoft.Win32;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Windows.Documents;
 
 namespace Task2
 {
@@ -24,34 +25,29 @@ namespace Task2
 
             for (int i = 0; i < AllTextFile.lineS.Count; i++)
                 AllTextFile.lineS[i] = AllTextFile.lineS[i].Trim();
-             //коздание категории
+            //коздание категории
             m_mainView = new MainView(this);
 
             for (int i = 0; i < 6; i++)
             {
                 BaseItem item1 = new BaseItem()
                 {
-                    Name = AllTextFile.s[i],
+                    Name = AllTextFile.type_object.Keys.ElementAt(i),
                     Parent = ModelView,
+                    Visible = Visibility.Hidden,
                 };
                 AllTextFile.item0.Add(item1);
-            }
-
-            for (int i = 0; i < 6; i++)
-            {
-                
                 int lineIndex = 0, endLineIndex = 0;
                 while (lineIndex != -1)
                 {
                     // поиск id для дерева
                     string temp_s = "";
-                    lineIndex = AllTextFile.lineS.FindIndex(line => line.StartsWith(AllTextFile.type_object[AllTextFile.s[i]])); //первая строка отрывка
+                    lineIndex = AllTextFile.lineS.FindIndex(line => line.StartsWith(AllTextFile.type_object[AllTextFile.type_object.Keys.ElementAt(i)])); //первая строка отрывка
                     endLineIndex = AllTextFile.lineS.FindIndex(line => line.StartsWith(AllTextFile.s_end[i])); //последняя строка отрывка
                     if (lineIndex != -1)
                     {
                         AllTextFile.temp_list = AllTextFile.lineS.GetRange(lineIndex, endLineIndex - lineIndex); //отрывок целиком
-                        int cd_id = 0;
-                        int ind = 0;
+                        int cd_id = 0, ind = 0;
                         bool b = true;
                         for (; cd_id < 3 && b; cd_id++)
                         {
@@ -73,14 +69,15 @@ namespace Task2
                         BaseItem child0 = new BaseItem() // создание элемента категории
                         {
                             Name = temp_s,
-                            Parent = AllTextFile.item0[i] // это прародитель
+                            Parent = AllTextFile.item0[i], // это прародитель
+                            Visible = Visibility.Visible
                         };
                         AllTextFile.item0[i].Children.Add(child0);
                         AllTextFile.lineS = AllTextFile.lineS.Skip(endLineIndex + 1).ToList();
                         cd_id = 0;
                     }
                 }
-                
+
                 m_mainView.Children.Add(AllTextFile.item0[i]);
             }
             DataContext = m_mainView;
@@ -122,9 +119,9 @@ namespace Task2
                     AllTextFile.lineS = new List<string>();
                 }
             }
-            catch (KeyNotFoundException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Выберите другой элемент");
+                
             }
         }
 
@@ -141,11 +138,10 @@ namespace Task2
                 fdlg.RestoreDirectory = true;
                 fdlg.ShowDialog();
 
-
-
                 AllTextFile.lineS = new List<string>(File.ReadAllLines("../../../24_21_1003001_2017-05-29_kpt11.xml")); // копируем весь файл в список
                 string long_str = "";
-                for (int f = 0; f < AllTextFile.list_io.Count; f++) {
+                for (int f = 0; f < AllTextFile.list_io.Count; f++)
+                {
                     for (int i = 0; i < AllTextFile.lineS.Count; i++)
                         AllTextFile.lineS[i] = AllTextFile.lineS[i].Trim();
 
@@ -158,12 +154,8 @@ namespace Task2
                     for (index_top = index; !(AllTextFile.lineS[index_top].Contains(top_line)); index_top--) { };
                     for (index_bottom = index; !(AllTextFile.lineS[index_bottom].Contains(bottom_line)); index_bottom++) { };
                     AllTextFile.temp_list = AllTextFile.lineS.GetRange(index_top, (index_bottom + 1) - index_top);
-
-                    foreach (string s in AllTextFile.temp_list)
-                    {
-                        long_str += s;
-                        long_str += "\n";
-                    }
+                    long_str += String.Join("\n", AllTextFile.temp_list);
+                    
                 }
 
 
@@ -177,7 +169,6 @@ namespace Task2
                 doc.PreserveWhitespace = false;
                 doc.Save(path);
                 AllTextFile.lineS = new List<string>();
-
 
             }
             catch (Exception ex)

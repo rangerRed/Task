@@ -8,8 +8,12 @@ namespace Task2
         static public bool io;
         static public List<string> lineS { get; set; } // хранение всех строк
         static public List<string> temp_list { get; set; } = new List<string>(); //хранение отрывка файла
-        static public List<string> temp_list_file { get; set; } = new List<string>(); //хранение отрывка файла
-        static public List<string> code { get; set; } = new List<string>() { "<cad_number>", "<reg_numb_border>", "<sk_id>", "</cad_number>", "</reg_numb_border>", "</sk_id>" }; // содержит все теги обозначающие id
+        static public List<string> code { get; set; } = new List<string>() {
+            "<cad_number>", "<reg_numb_border>",
+            "<sk_id>", "</cad_number>",
+            "</reg_numb_border>", "</sk_id>",
+            ""
+        };
         static public Dictionary<string, string> type_object { get; set; } = new Dictionary<string, string>() //содержит имена категорий - ключи и их теги - значения
             {
                 { "land record", "<land_record>" },
@@ -28,7 +32,6 @@ namespace Task2
                 "</municipal_boundaries>",
                 "</zones_and_territories_record>"
             };
-        static public List<string> s { get; set; } = new List<string>(type_object.Keys); // названия категорий
 
         static public List<BaseItem> item0 = new List<BaseItem>();
 

@@ -27,6 +27,18 @@ namespace Task2
             }
         }
 
+        private Visibility m_visible;
+
+        public Visibility Visible
+        {
+            get => m_visible;
+            set
+            {
+                m_visible = value;
+                OnPropertyChanged();
+            }
+        }
+
         private void OnTreeViewChecked()
         {
             if(TreeViewChecked)

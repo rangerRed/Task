@@ -8,23 +8,23 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Task" Height="600" Width="1200">
     <Grid>
-        <TreeView VirtualizingStackPanel.IsVirtualizing="True" x:Name="trv" ItemsSource="{Binding Children}" SelectedItemChanged="Trv_SelectedItemChanged"  HorizontalAlignment="Left" Margin="10,10,0,70"  Width="280">
+        <TreeView VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" x:Name="trv" ItemsSource="{Binding Children}" SelectedItemChanged="Trv_SelectedItemChanged"  HorizontalAlignment="Left" Margin="10,10,0,70"  Width="280">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="x:Type model:BaseItem" ItemsSource="{Binding Children}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="15"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="190"/>
+                            <ColumnDefinition Width="18"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="1" Content="{Binding Name}"/>
-                        <CheckBox Grid.Column="0" VerticalAlignment="Center" IsChecked="{Binding TreeViewChecked}"/>
+                        <Label Grid.Column="0" Content="{Binding Name}"/>
+                        <CheckBox Grid.Column="1" VerticalAlignment="Center" Visibility="{Binding Visible}" IsChecked="{Binding TreeViewChecked}"/>
                     </Grid>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
         <Border Margin="300,10,10,10" CornerRadius="3" Background="#f3f3f3">
             <ScrollViewer ScrollViewer.IsDeferredScrollingEnabled="True" VerticalScrollBarVisibility="auto">
-                <TextBlock x:Name="txBl" FontSize="18" VerticalAlignment="Center" Margin="30" Text="Для просмотра содержимого&#10; выберите элемент"/>
+                <TextBlock x:Name="txBl" FontFamily="Consolas" FontSize="18" VerticalAlignment="Center" Margin="30" Text="Для просмотра содержимого&#10;выберите элемент"/>
             </ScrollViewer>
         </Border>
         <Button Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="50" Width="280" Content="Сохранить заново" FontSize="14" Click="Button_Click"/>
